@@ -25,7 +25,7 @@ include_directories(
 	${hdr})
 # add_subdirectory(${src})
 
-add_library(navajo ${src}/AuthPAM.cpp ${src}/LocalRepository.cpp  ${src}/LogFile.cpp  ${src}/LogRecorder.cpp  ${src}/LogStdOutput.cpp  ${src}/LogSyslog.cpp  ${src}/WebServer.cpp)
+add_library(navajo SHARED ${src}/AuthPAM.cpp ${src}/LocalRepository.cpp  ${src}/LogFile.cpp  ${src}/LogRecorder.cpp  ${src}/LogStdOutput.cpp  ${src}/LogSyslog.cpp  ${src}/WebServer.cpp)
 add_executable(navajoPrecompiler ${src}/navajoPrecompiler.cpp)
 
 # Documentation
