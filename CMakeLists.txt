@@ -39,7 +39,7 @@ endif(DOXYGEN_FOUND)
 
 # Install Targets
 # install_files(/include/${PROJECT} ${hdr}/libnavajo)
-install(DIRECTORY ${source_dir}/include/${PROJECT} DESTINATION include)
+install(DIRECTORY ${source_dir}/include/${PROJECT} DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
 if (DOXYGEN_FOUND)
 	install(DIRECTORY ${binary_dir}/docs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 endif(DOXYGEN_FOUND)
