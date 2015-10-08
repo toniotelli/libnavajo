@@ -13,10 +13,7 @@ set(binary_dir ${CMAKE_CURRENT_BINARY_DIR})
 set(BUILD_SHARED_LIBS ON)
 
 # Required Package
-find_package(PkgConfig)
-if (PKG_CONFIG_FOUND)
-	pkg_check_modules(OPENSSL REQUIRED openssl)
-endif(PKG_CONFIG_FOUND)
+find_package(OpenSSL REQUIRED)
 
 # Directory Definition
 set(src ${source_dir}/src)
@@ -37,12 +34,14 @@ if(DOXYGEN_FOUND)
 	configure_file(${source_dir}/doxygen.conf ${binary_dir}/doxygen.conf @ONLY)
 	add_custom_target(Docs ALL
 		${DOXYGEN_EXECUTABLE} ${binary_dir}/doxygen.conf ${binary_dir}
-	install(DIRECTORY ${binary_dir}/docs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
 	COMMENT "Generating API documentation with Doxygen" VERBATIM)
 endif(DOXYGEN_FOUND)
 
 # Install Targets
 # install_files(/include/${PROJECT} ${hdr}/libnavajo)
 install(DIRECTORY ${source_dir}/include/${PROJECT} DESTINATION include)
+if (DOXYGEN_FOUND)
+	install(DIRECTORY ${binary_dir}/docs DESTINATION ${CMAKE_INSTALL_PREFIX}/)
+endif(DOXYGEN_FOUND)
 install_targets(/bin navajoPrecompiler)
 install_targets(/lib navajo)
